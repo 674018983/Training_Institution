@@ -1,12 +1,8 @@
 package UI.LogUtils;
 
-import java.util.Objects;
-
 import javax.inject.Inject;
 
 import Content.Info;
-import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by XZC on 2017/4/7.

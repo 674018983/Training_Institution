@@ -3,7 +3,7 @@ package Share;
 import android.content.Context;
 
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
+import onekeyshare.OnekeyShare;
 
 /**
  * Created by XZC on 2017/4/10.

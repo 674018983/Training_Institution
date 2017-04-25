@@ -8,7 +8,7 @@ import Login.View.Login_View;
  * Created by XZC on 2017/4/7.
  */
 
-public class Login_Presenter_Impl implements Login_Presenter ,Login_Model.onFinishListener{
+public class Login_Presenter_Impl implements Login_Presenter ,Login_Model.onFinishListener {
 
     private Login_View loginView;
     private Login_Model loginModel;

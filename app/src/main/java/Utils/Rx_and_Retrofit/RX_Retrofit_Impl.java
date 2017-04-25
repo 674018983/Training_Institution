@@ -5,7 +5,6 @@ import android.util.Log;
 import Utils.Rx_and_Retrofit.Model.Training_Institution;
 import Utils.Rx_and_Retrofit.Service.ServiceFactory;
 import Utils.Rx_and_Retrofit.Service.Training_Service;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

@@ -1,8 +1,6 @@
 package Utils.Okhttp;
 
 
-import android.view.View;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -19,9 +17,15 @@ import okhttp3.Response;
 public class okhttp_GET {
     private Okhttp mokhttp  ;
 
-    interface OnOkhttpListener{
+
+    public okhttp_GET(){
+        mokhttp = new Okhttp();
+        mokhttp.getokHttpClient();
+    }
+
+    public interface OnOkhttpListener{
         void onFailure();
-        void onResponse();
+        void onResponse(Response response);
     }
     /**
      * @param url  网站链接
@@ -46,7 +50,7 @@ public class okhttp_GET {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     if( listener != null){
-                        listener.onResponse();
+                        listener.onResponse(response);
                     }
                 }else{
                     //返回201，2xx，这些

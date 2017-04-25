@@ -11,7 +11,7 @@ import rx.Observable;
  */
 
 public interface Training_Service {
-    String SERVICE_ENDPOINT = "https://api.github.com";
+    String SERVICE_ENDPOINT = "http://deazy.cn";
     @GET("/users/{name}")
     Observable<Training_Institution> getData(@Path("name") String login);
 }

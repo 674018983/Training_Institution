@@ -3,12 +3,10 @@ package Content.Crash;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Path;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
 import android.os.Process;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
