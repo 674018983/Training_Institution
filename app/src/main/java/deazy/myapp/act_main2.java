@@ -80,7 +80,7 @@ public class act_main2 extends Activity {
                 String address1 = address.getText().toString();
 
                 Toast.makeText(act_main2.this, name1+";"+address1, Toast.LENGTH_SHORT).show();
-                net1("https://api.github.com/users/google",name1);
+                net1("http://deazy.cn:8080/search",name1);
             }
         });
 
@@ -169,7 +169,7 @@ public class act_main2 extends Activity {
                         try {
 
 
-                            show.setText(string);
+//                            show.setText(string);
                             cardAdapter.addData(string);
                         } catch (IOException e) {
                             e.printStackTrace();

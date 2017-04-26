@@ -2,9 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <EditText
+        android:id="@+id/information"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="search"
+        android:layout_height="wrap_content"
+        android:hint="请输入短信信息"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+        <EditText
+            android:id="@+id/information_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/ic_launcher"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+        <EditText
+            android:id="@+id/information_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/ic_launcher"
+            />
+    </LinearLayout>
+    <Button
+
+        android:id="@+id/confirm_and_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="信息确认无误，搜索"
         />
 </LinearLayout>
