@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ public class Search_Fragment extends Fragment {
     private EditText mInformation_address;
     private Button confirm;
     private TextWatcher textWatcher;
+    private static final String TAG = "Search_Fragment";
+
 
     public static Search_Fragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -53,8 +56,8 @@ public class Search_Fragment extends Fragment {
             public void afterTextChanged(Editable s) {
                String text = mInformation.getText().toString();
 
-                String[] aa = text.split("地址:");
-                mInformation_name.setText(aa[ 0 ]);
+                search_address(text);
+
             }
         };
 
@@ -71,11 +74,53 @@ public class Search_Fragment extends Fragment {
      * 查找公司地址
      * */
     private void search_address(String text) {
+        String delete_Front_text = "";
         //滤掉地址前面的文本
         String[] step1 = text.split("地址:");
+        Log.e(TAG, "search_address: "+step1.length);
+        if(step1.length > 1){
+            delete_Front_text = step1[ 1 ];
+        }else{
+            step1 = text.split("地址：");
+        }
+
+        if(step1.length > 1){
+            delete_Front_text = step1[ 1 ];
+        }else{
+            String data ="";
+            data = select_address("广州",text);
+            if(data != null) {
+                delete_Front_text = data;
+            }else {
+                data = select_address("深圳",text);
+                if(data != null) {
+                    delete_Front_text = data;
+                }
+            }
+
+        }
+        Log.e(TAG, "search_address12: "+delete_Front_text );
         //滤掉地址后面的文本
-//        String[] step2 = text.split("地址:");
+            //滤掉以。.（( 空格结尾的
+            String[] step2 = delete_Front_text.split("\\.|\\。|\\(|\\（|\\s+");
+            mInformation_address.setText(step2[0]);
+
     }
+
+    private String select_address(String city,String in_text) {
+        String out_text = null;
+        String[] step_of_select = in_text.split(city);
+        for(int i = 0;i < step_of_select.length ;i++){
+            String[] str = step_of_select[ i ].split("区");
+            if(!str[ 0 ].equals(step_of_select[ i ])){
+                out_text = city+step_of_select[ i ];
+                Log.e(TAG, "search_address11: "+out_text );
+            }
+
+        }
+        return out_text;
+    }
+
 
     @Nullable
     @Override

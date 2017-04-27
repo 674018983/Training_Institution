@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DIYview" />
             <option value="$PROJECT_DIR$/Json" />
             <option value="$PROJECT_DIR$/amap" />
             <option value="$PROJECT_DIR$/app" />

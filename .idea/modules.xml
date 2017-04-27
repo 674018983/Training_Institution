@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DIYview/DIYview.iml" filepath="$PROJECT_DIR$/DIYview/DIYview.iml" />
       <module fileurl="file://$PROJECT_DIR$/Json/Json.iml" filepath="$PROJECT_DIR$/Json/Json.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApp.iml" filepath="$PROJECT_DIR$/MyApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/amap/amap.iml" filepath="$PROJECT_DIR$/amap/amap.iml" />

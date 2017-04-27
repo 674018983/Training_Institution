@@ -1,16 +1,14 @@
 package deazy.myapp;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 
 import Adapter.CardAdapter;
-import UI.Dialog.Waiting_Dialog;
-import deazy.myapp.R;
+import Navigation_UI.Dialog.Waiting_Dialog;
+
 /**
  * Created by XZC on 2017/4/26.
  */
