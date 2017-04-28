@@ -1,4 +1,4 @@
-package deazy.myapplication;
+package UI;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,14 +7,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 
-import java.io.PrintWriter;
+import deazy.myapp.R;
 
 /**
  * Created by XZC on 2017/4/27.
@@ -55,7 +52,7 @@ public class point_view extends View {
     }
 
     private void init(Context context,AttributeSet attrs) {
-        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.point_view);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.point_view);
         mPoint_Color = ta.getColor(R.styleable.point_view_Point_Color,Color.WHITE);
         radius = ta.getInteger(R.styleable.point_view_Point_Radius,10);
         Gap_Width = ta.getInteger(R.styleable.point_view_Point_GapWidth,50);

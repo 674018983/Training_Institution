@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="point_view">
+        <attr name="Point_Color" format="color"/>
+        <attr name="Point_Radius" format="integer"/>
+        <attr name="Point_GapWidth" format="integer"/>
+    </declare-styleable>
+
+
+</resources>
