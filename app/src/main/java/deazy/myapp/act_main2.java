@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.CardAdapter;
-import Utils.Okhttp.key_value;
-import Utils.Okhttp.okhttp_GET;
+import NetWork.Okhttp.key_value;
+import NetWork.Okhttp.okhttp_GET;
 import okhttp3.Response;
 
 /**
@@ -166,14 +166,16 @@ public class act_main2 extends Activity {
                     @Override
                     public void run() {
 
-                        try {
-
-
-//                            show.setText(string);
-                            cardAdapter.addData(string);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//
+//
+////                            show.setText(string);
+//
+//                           cardAdapter.addData(string);
+//
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
 

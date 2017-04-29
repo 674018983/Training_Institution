@@ -1,4 +1,4 @@
-package Utils.Rx_and_Retrofit.Model;
+package NetWork.Rx_and_Retrofit.Model;
 
 /**
  * Created by XZC on 2017/4/15.

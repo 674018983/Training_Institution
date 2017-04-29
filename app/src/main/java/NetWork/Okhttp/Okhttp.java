@@ -1,6 +1,4 @@
-package Utils.Okhttp;
-
-import javax.inject.Inject;
+package NetWork.Okhttp;
 
 import okhttp3.OkHttpClient;
 

@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import Utils.Rx_and_Retrofit.Model.Training_Institution;
+import NetWork.Rx_and_Retrofit.Model.Training_Institution;
 import deazy.myapp.R;
-import okhttp3.Response;
 
 /**
  * Created by XZC on 2017/4/15.
@@ -24,23 +23,24 @@ import okhttp3.Response;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     List<Training_Institution> mItems;
+    private static final String TAG = "CardAdapter";
 
     public CardAdapter(){
         super();
         mItems = new ArrayList<Training_Institution>();
     }
 
-    public void addData(String response) throws IOException {
+    public void addData(Training_Institution training_institution) throws IOException {
+//        Log.e(TAG, "addData: "+response );
         Gson gson = new Gson();
-        if(!response.equals("")&&response!=null) {
-//            Training_Institution[] training_institution = gson.fromJson(response, Training_Institution[].class);
-//            // 这时候想转成List的话调用如下方法
-//            List<Training_Institution> foosList = Arrays.asList(training_institution);
-            List<Training_Institution> foosList = gson.fromJson(response, new TypeToken<List<Training_Institution>>(){}.getType());
-            for (Training_Institution ti : foosList) {
-                mItems.add(ti);
-            }
-        }
+//        if(!response.equals("")&&response!=null) {
+//
+//            List<Training_Institution> foosList = gson.fromJson(response, new TypeToken<List<Training_Institution>>(){}.getType());
+//            for (Training_Institution ti : foosList) {
+//                mItems.add(ti);
+//            }
+//        }
+        mItems.add(training_institution);
         notifyDataSetChanged();
     }
     public void clear(){
