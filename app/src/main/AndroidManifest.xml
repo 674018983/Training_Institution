@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Search_result"
+        <activity android:name=".MainActivity"
             android:theme="@style/AppStart"
             android:screenOrientation="portrait"
             >

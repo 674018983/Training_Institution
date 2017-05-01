@@ -54,8 +54,9 @@ public class Search_Fragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-               String text = mInformation.getText().toString();
 
+                String text = mInformation.getText().toString();
+                search_name(text);
                 search_address(text);
 
             }
@@ -67,8 +68,44 @@ public class Search_Fragment extends Fragment {
      * @param text 需要查找的文本
      * */
     private void search_name(String text) {
+        String delete_Front_text = "";
+        //滤掉公司前面的文本
+        String[] step1 = text.split("\\[|\\【");
+        if(step1.length > 1 ){
+            delete_Front_text = step1[ 1 ];
+            String[] step2 = delete_Front_text.split("\\]|\\】");
+            if( step2[ 0 ] != "智联招聘" && step2[ 0 ] != "前程无忧"){
+                mInformation_name.setText(step2[ 0 ]);
+            }
 
+        }else{
+            if(!select_name(text)){
+                String step[] =text.split("科技");
+                if( step.length > 1 ){
+                    String company_name[] = step[ 0 ].split("\\s+|\\.|\\。|\\;|\\；|\\,|\\，|\\(|\\[|\\【");
+                    if( company_name.length > 1 ){
+                        mInformation_name.setText(company_name[1]+"科技");
+                    }
+                }
+            }
+        }
     }
+
+    //匹配公司名称
+    private boolean select_name(String in_text) {
+        String[] step_of_select = in_text.split("公司");
+        if(step_of_select.length > 1){
+            String[] step1_of_select = step_of_select[ 0 ].split("\\s+|是|广州|深圳");
+            if(step1_of_select.length > 1){
+                mInformation_name.setText(step1_of_select[step1_of_select.length]);
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
+    }
+
     /**
      * @param text 需要查找的文本
      * 查找公司地址
@@ -80,6 +117,7 @@ public class Search_Fragment extends Fragment {
         Log.e(TAG, "search_address: "+step1.length);
         if(step1.length > 1){
             delete_Front_text = step1[ 1 ];
+
         }else{
             step1 = text.split("地址：");
         }
@@ -107,6 +145,7 @@ public class Search_Fragment extends Fragment {
 
     }
 
+    //当对方不按正规信息来的时候，先搜地方名字，再识别后面有没有区字，如果有就基本确定地址了
     private String select_address(String city,String in_text) {
         String out_text = null;
         String[] step_of_select = in_text.split(city);

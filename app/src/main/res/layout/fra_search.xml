@@ -38,10 +38,13 @@
             />
     </LinearLayout>
     <Button
-
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:id="@+id/confirm_and_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_confirm"
         android:text="信息确认无误，搜索"
         />
 </LinearLayout>
