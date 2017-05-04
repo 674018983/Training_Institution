@@ -8,4 +8,9 @@ package Content;
  * */
 public class Info {
     public static final boolean ACTIVITY_LOG=true;
+    public static final int fragment_search = 0;
+    public static final int fragment_location = 1;
+    public static final int fragment_navigation = 2;
+    public static final int fragment_person = 3;
+    public static final int fragment_nothing = 4;
 }

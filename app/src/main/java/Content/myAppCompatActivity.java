@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 import Content.Inject.DaggermainComponent;
-import UI.LogUtils.logUtil;
+import Utils.LogUtils.logUtil;
 /**
  * Created by XZC on 2017/4/7.
  */

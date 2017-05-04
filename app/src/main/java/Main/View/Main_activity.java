@@ -16,7 +16,7 @@ import deazy.myapp.R;
  * Created by XZC on 2017/4/13.
  */
 
-public class Main_activity  extends myAppCompatActivity  implements main_View{
+public class Main_activity  extends main_View{
     private ViewPager viewPager;
     List<Icon> mlist = new ArrayList<Icon>();
     @Override

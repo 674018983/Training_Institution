@@ -1,5 +1,6 @@
 package PageFragment;
 
+import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import deazy.myapp.R;
+import deazy.myapp.Search_result;
 
 /**
  * Created by XZC on 2017/4/22.
@@ -82,9 +84,9 @@ public class Search_Fragment extends Fragment {
             if(!select_name(text)){
                 String step[] =text.split("科技");
                 if( step.length > 1 ){
-                    String company_name[] = step[ 0 ].split("\\s+|\\.|\\。|\\;|\\；|\\,|\\，|\\(|\\[|\\【");
+                    String company_name[] = step[ 0 ].split("\\s+|\\.|\\。|\\;|\\；|\\,|\\，|\\(|\\（|\\[|\\【");
                     if( company_name.length > 1 ){
-                        mInformation_name.setText(company_name[1]+"科技");
+                        mInformation_name.setText(company_name[company_name.length-1]+"科技");
                     }
                 }
             }
@@ -173,9 +175,28 @@ public class Search_Fragment extends Fragment {
         confirm = (Button) v.findViewById(R.id.confirm_and_search);
 
         mInformation.addTextChangedListener(textWatcher);
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start_Result_Activity();
+            }
+        });
+
         return v;
     }
 
 
+    private void start_Result_Activity(){
+        Intent intent = new Intent(getContext(), Search_result.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("company",mInformation_name.getText().toString());
+        bundle.putString("address",mInformation_address.getText().toString());
+
+        intent.putExtras(bundle);
+        getActivity().startActivityForResult(intent,1);
+//        startActivity(intent);
+    }
 
 }

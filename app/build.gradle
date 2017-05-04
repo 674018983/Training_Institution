@@ -3,6 +3,11 @@ apply plugin: 'com.neenbedankt.android-apt' // 注释处理
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     defaultConfig {
         applicationId "deazy.myapp"
         minSdkVersion 15
@@ -26,13 +31,13 @@ repositories{
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //dagger
     apt 'com.google.dagger:dagger-compiler:2.6'
     compile 'com.google.dagger:dagger:2.4'
     //SMS
-    compile name:'SMSSDK-2.1.4',ext:'aar'
-    compile name:'SMSSDKGUI-2.1.4',ext:'aar'
+    compile name: 'SMSSDK-2.1.4', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.4', ext: 'aar'
     //EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
     //material Design
@@ -49,10 +54,13 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     //okhttp
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+    compile files('libs/Amap_2DMap_V4.2.0_20170209.jar')
+    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
+    compile files('libs/AMap_Search_V5.0.0_20170309.jar')
+    compile files('libs/AMap3DMap_5.0.0_AMapNavi_5.0.1_20170410.jar')
 }

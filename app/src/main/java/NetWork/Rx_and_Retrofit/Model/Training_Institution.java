@@ -45,11 +45,11 @@ public class Training_Institution {
 
     @Override
     public String toString() {
-        return "Training_Institution{" +
-                "pid='" + pid + '\'' +
-                ", name='" + name + '\'' +
-                ", comment='" + comment + '\'' +
-                ", address='" + address + '\'' +
+        return "{" +
+                '\"' +"pid" + '\"' +":"+ '\"' + pid + '\"' +','+
+                '\"' +"name" + '\"' +":"+  '\"' + name + '\"' +','+
+                '\"' +"comment" + '\"' +":"+ '\"' + comment + '\"' +','+
+                '\"' +"address" + '\"' +":"+ '\"' + address + '\"' +
                 '}';
     }
 }

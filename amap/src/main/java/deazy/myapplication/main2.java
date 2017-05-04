@@ -63,10 +63,14 @@ public class main2 extends Activity implements LocationSource ,AMapLocationListe
 
         geocoderSearch = new GeocodeSearch(this);
         geocoderSearch.setOnGeocodeSearchListener(this);
+
+
         // name表示地址，第二个参数表示查询城市，中文或者中文全拼，citycode、adcode
         GeocodeQuery query = new GeocodeQuery("深圳市南山区深南大道10000号", "0755");
-
         geocoderSearch.getFromLocationNameAsyn(query);
+
+
+
         progDialog = new ProgressDialog(this);
         showDialog();
     }

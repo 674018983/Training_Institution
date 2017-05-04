@@ -12,6 +12,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import NetWork.Rx_and_Retrofit.Model.Training_Institution;
 
@@ -36,13 +38,9 @@ public class ItemTypeAdapterFactory implements TypeAdapterFactory {
             public T read(JsonReader in) throws IOException {
                 JsonElement jsonElement = elementTypeAdapter.read(in);
                 Log.e(TAG, "read: "+jsonElement.toString());
-                if(jsonElement.isJsonObject()){
-////                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    Log.e(TAG, "read: "+"有分支"+jsonElement.toString());
-//                    return  delegate.fromJson(jsonElement.toString());
-                    Training_Institution ts = new Training_Institution();
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
 
+                if(jsonElement.isJsonObject()){
+                    Log.e(TAG, "read: "+"有分支"+jsonElement.toString());
 
                     return delegate.fromJson(jsonElement.toString());
                 }

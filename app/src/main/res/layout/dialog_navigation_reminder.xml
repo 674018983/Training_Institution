@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="是否立刻导航到"
+        android:gravity="center"
+        android:background="#fff"
+
+        />
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#909090"
+
+        />
+    <TextView
+        android:id="@+id/navigation_address"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="广东省广州市装逼路5号"
+        android:gravity="center"
+        android:background="#fff"
+        />
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/ensure"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:background="#fff"
+            />
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:background="#fff"
+            />
+    </LinearLayout>
+
+</LinearLayout>
