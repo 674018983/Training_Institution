@@ -1,7 +1,6 @@
 package PageFragment;
 
 import android.content.Intent;
-import android.graphics.ImageFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import deazy.myapp.R;
-import deazy.myapp.Search_result;
+import deazy.myapp.Activity.Search_result;
 
 /**
  * Created by XZC on 2017/4/22.

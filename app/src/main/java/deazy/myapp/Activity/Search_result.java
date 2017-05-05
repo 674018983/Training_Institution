@@ -1,4 +1,4 @@
-package deazy.myapp;
+package deazy.myapp.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +19,7 @@ import UI.Dialog.Waiting_Dialog;
 import NetWork.Rx_and_Retrofit.Model.Training_Institution;
 import NetWork.Rx_and_Retrofit.Service.ServiceFactory;
 import NetWork.Rx_and_Retrofit.Service.Training_Service;
+import deazy.myapp.R;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

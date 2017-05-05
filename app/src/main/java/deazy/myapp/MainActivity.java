@@ -19,6 +19,8 @@ import UI.WeiXinButton.WeiXinButton;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
+    private String CompanyName = "";
+    private String CompanyAddress = "";
 
     List<Icon> mlist = new ArrayList<Icon>();
     @Override
@@ -41,6 +43,24 @@ public class MainActivity extends AppCompatActivity {
         myview.add(mlist);
     }
 
+    /**
+     * 用于activty与fragment的传递
+     * */
+    public String getCompany_Name(){
+        return CompanyName;
+    }
+    public void setCompany_Name(String name){
+        CompanyName = name;
+    }
+
+    public String getCompany_Address(){
+        return CompanyAddress;
+    }
+    public void setCompany_Address(String address){
+        CompanyAddress = address;
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -55,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                         case Info.fragment_location:
                             break;
                         case Info.fragment_navigation:
-//                            String company_name = data.getStringExtra("result_company");
-                            String company_address = data.getStringExtra("result_address");
+                            CompanyName = data.getStringExtra("result_company");
+                            CompanyAddress = data.getStringExtra("result_address");
                             viewPager.setCurrentItem(CurrentItem);
                             break;
                         case Info.fragment_person:

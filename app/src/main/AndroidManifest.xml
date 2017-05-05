@@ -26,6 +26,9 @@
     <!--这个权限用于允许程序在手机屏幕关闭后后台进程仍然运行-->
     <user-permission android:name="android.permission.WAKE_LOCK"/>
 
+
+
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -72,7 +75,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
-        <activity android:name=".Search_result"/>
+        <activity android:name=".Activity.Search_result"/>
         <activity android:name=".Activity.BusRouteDetailActivity"/>
         <service android:name="com.amap.api.location.APSService"></service>
 

@@ -36,16 +36,24 @@ import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkRouteResult;
 
+import Content.Info;
+import EventBus.Event;
+import EventBus.EventBusUtils;
+import EventBus.query;
+import EventBus.query_Address;
+import EventBus.return_Address;
 import Navigation.AMapUtil;
 import Navigation.BusResultListAdapter;
 import Utils.ToastUtil;
+import deazy.myapp.MainActivity;
 import deazy.myapp.R;
 
 /**
  * Created by XZC on 2017/4/22.
  */
 
-public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchListener ,LocationSource,AMapLocationListener,GeocodeSearch.OnGeocodeSearchListener{
+public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchListener ,
+        LocationSource,AMapLocationListener,GeocodeSearch.OnGeocodeSearchListener{
     public static final String ARGS_PAGE = "args_page";
     private MapView mapView;
     private AMap aMap;
@@ -62,14 +70,18 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
     private AMapLocationClientOption mLocationOption;
     private GeocodeSearch geocoderSearch;
 
-    private LatLonPoint mStartPoint = new LatLonPoint(23.269891, 113.210971);//起点，116.335891,39.942295
-    private LatLonPoint mEndPoint = new LatLonPoint(22.540643, 113.934211);//终点，116.481288,39.995576
+//    private LatLonPoint mStartPoint = new LatLonPoint(23.269891, 113.210971);//起点，116.335891,39.942295
+//    private LatLonPoint mEndPoint = new LatLonPoint(22.540643, 113.934211);//终点，116.481288,39.995576
 
-    private String mCurrentCityName = "北京";
+    private LatLonPoint mStartPoint = null;
+    private LatLonPoint mEndPoint = null;
+
+    private String mCurrentCityName = "广州";
     private final int ROUTE_TYPE_BUS = 1;
     private ProgressDialog progDialog = null;// 搜索时进度条
 
     private int mPage;
+    private boolean frist_route  = false;
 
     public static Go_Fragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -95,16 +107,45 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
         mapView = (MapView) v.findViewById(R.id.route_map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
 
+        EventBusUtils.register(this);
+        EventBusUtils.postSync(new query(Info.COMPANY_ADDRESS));
+        if (aMap == null) {
+            aMap = mapView.getMap();
+        }
+
+        // 设置定位监听
+        aMap.setLocationSource(this);
+// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        aMap.setMyLocationEnabled(true);
+// 设置定位的类型为定位模式，有定位、跟随或地图根据面向方向旋转几种
+        aMap.setMyLocationType(AMap.LOCATION_TYPE_MAP_FOLLOW);
+
+        geocoderSearch = new GeocodeSearch(getContext());
+        geocoderSearch.setOnGeocodeSearchListener(this);
+
+
+        // name表示地址，第二个参数表示查询城市，中文或者中文全拼，citycode、adcode
+        getLatlon("广州市天河区科韵路16号");
+
+
+//        progDialog = new ProgressDialog(this);
+//        showDialog();
+
         init(v);
-        //设置标志
-        setfromandtoMarker();
+
+
+
 
         mapView.setVisibility(View.GONE);
         mBusResultLayout.setVisibility(View.VISIBLE);
-        searchRouteResult(ROUTE_TYPE_BUS, RouteSearch.BusDefault);
+
         return v;
     }
 
+
+    public void onEvent(return_Address event) {
+
+    }
     /**
      * 设置开始标志跟结束标志
      */
@@ -139,11 +180,17 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
     public void searchRouteResult(int routeType, int mode) {
         if (mStartPoint == null) {
             ToastUtil.show(getContext(), "定位中，稍后再试...");
+            frist_route = false;
             return;
         }
         if (mEndPoint == null) {
             ToastUtil.show(getContext(), "终点未设置");
+            frist_route = false;
+            return;
         }
+        //设置标志
+        setfromandtoMarker();
+
         showProgressDialog();
         final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
                 mStartPoint, mEndPoint);
@@ -217,8 +264,13 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
      */
     public void getLatlon(final String name) {
 //        showDialog();
+        String city_code = "020";
+        if(name.startsWith("深圳")){
+            city_code = "0755";
+            mCurrentCityName = "深圳";
 
-        GeocodeQuery query = new GeocodeQuery(name, "010");// 第一个参数表示地址，第二个参数表示查询城市，中文或者中文全拼，citycode、adcode，
+        }
+        GeocodeQuery query = new GeocodeQuery(name, city_code);// 第一个参数表示地址，第二个参数表示查询城市，中文或者中文全拼，citycode、adcode，
         geocoderSearch.getFromLocationNameAsyn(query);// 设置同步地理编码请求
     }
 
@@ -284,17 +336,25 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBusUtils.unregister(this);
         mapView.onDestroy();
     }
 
-
+    /**
+     * 定位
+     * */
     @Override
     public void onLocationChanged(AMapLocation amapLocation) {
         if (mListener != null&&amapLocation != null) {
             if (amapLocation != null
                     &&amapLocation.getErrorCode() == 0) {
-                Log.e("你妹妹", "onLocationChanged: "+amapLocation.getLongitude()+";"+amapLocation.getLatitude() );
+                Log.e("你妹妹", "onLocationChanged: "+amapLocation.getLatitude()+";" +amapLocation.getLongitude());
+                mStartPoint = new LatLonPoint(amapLocation.getLatitude(),amapLocation.getLongitude());
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+                if( !frist_route ) {
+                    frist_route = true;
+                    searchRouteResult(ROUTE_TYPE_BUS, RouteSearch.BusDefault);
+                }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
                 Log.e("AmapErr",errText);
@@ -340,7 +400,9 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
 
     }
-
+    /**
+     * 目标的经纬度
+     * */
     @Override
     public void onGeocodeSearched(GeocodeResult result, int rCode) {
 //        dismissDialog();
@@ -354,6 +416,7 @@ public class Go_Fragment extends Fragment implements RouteSearch.OnRouteSearchLi
 //                        .getLatLonPoint()));
                 addressName = "经纬度值:" + address.getLatLonPoint() + "\n位置描述:"
                         + address.getFormatAddress();
+                mEndPoint = new LatLonPoint( address.getLatLonPoint().getLatitude(),address.getLatLonPoint().getLongitude());
 //                ToastUtil.show(main2.this, addressName);
                 Log.e("你说呢", "onGeocodeSearched: "+ addressName);
             } else {

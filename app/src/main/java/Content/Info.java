@@ -13,4 +13,7 @@ public class Info {
     public static final int fragment_navigation = 2;
     public static final int fragment_person = 3;
     public static final int fragment_nothing = 4;
+
+    public static final int COMPANY_NAME = 0;
+    public static final int COMPANY_ADDRESS = 1;
 }
