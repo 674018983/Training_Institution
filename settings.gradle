@@ -1,1 +1,1 @@
-include ':app', ':myapplication', ':mylibrary', ':myapplication2', ':Json', ':amap', ':DIYview'
+include ':app', ':myapplication', ':mylibrary', ':myapplication2', ':Json', ':amap', ':DIYview', ':section'
