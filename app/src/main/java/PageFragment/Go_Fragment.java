@@ -40,7 +40,6 @@ import Content.Info;
 import EventBus.Event;
 import EventBus.EventBusUtils;
 import EventBus.query;
-import EventBus.query_Address;
 import EventBus.return_Address;
 import Navigation.AMapUtil;
 import Navigation.BusResultListAdapter;

@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<deazy.myapplication.tag
-    android:id="@+id/tag"
-    android:layout_gravity="center"
+<deazy.myapplication.stickyhead
+    android:id="@+id/sticky"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 </LinearLayout>

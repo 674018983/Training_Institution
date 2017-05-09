@@ -2,6 +2,9 @@ package deazy.myapplication;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -54,7 +57,22 @@ public class tag extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         View childview = getChildAt(0);
         Log.e(TAG, "onLayout: "+l+";"+t+";"+r+";"+b+";");
-        childview.layout(0,0,100,100);
+        childview.layout(0,0,300,300);
 
     }
+
+//    @Override
+//    protected void dispatchDraw(Canvas canvas) {
+//
+//        canvas.save();
+//        Rect clip = canvas.getClipBounds();
+//        clip.top = 200 ;
+//        Paint mPaint =new Paint();
+//        mPaint.setColor(Color.BLUE);
+//
+//        canvas.clipRect(clip);
+//        super.dispatchDraw(canvas);
+////        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);
+//        canvas.restore();
+//    }
 }
